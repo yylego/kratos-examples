@@ -3,6 +3,7 @@ syntax = "proto3";
 package student;
 
 import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
 
 option go_package = "demo1kratos/api/student;student";
 
@@ -22,21 +23,15 @@ service StudentService {
   }
 
   rpc DeleteStudent(DeleteStudentRequest) returns (DeleteStudentReply) {
-    option (google.api.http) = {
-      delete: "/students/{id}"
-    };
+    option (google.api.http) = {delete: "/students/{id}"};
   }
 
   rpc GetStudent(GetStudentRequest) returns (GetStudentReply) {
-    option (google.api.http) = {
-      get: "/students/{id}"
-    };
+    option (google.api.http) = {get: "/students/{id}"};
   }
 
   rpc ListStudents(ListStudentsRequest) returns (ListStudentsReply) {
-    option (google.api.http) = {
-      get: "/students"
-    };
+    option (google.api.http) = {get: "/students"};
   }
 }
 
@@ -48,7 +43,7 @@ message StudentInfo {
 }
 
 message CreateStudentRequest {
-  string name = 1;
+  string name = 1 [(google.api.field_behavior) = REQUIRED];
   int32 age = 2;
   string class_name = 3;
 }
@@ -58,8 +53,8 @@ message CreateStudentReply {
 }
 
 message UpdateStudentRequest {
-  int64 id = 1;
-  string name = 2;
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  string name = 2 [(google.api.field_behavior) = REQUIRED];
   int32 age = 3;
   string class_name = 4;
 }
@@ -69,7 +64,7 @@ message UpdateStudentReply {
 }
 
 message DeleteStudentRequest {
-  int64 id = 1;
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 message DeleteStudentReply {
@@ -77,7 +72,7 @@ message DeleteStudentReply {
 }
 
 message GetStudentRequest {
-  int64 id = 1;
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 message GetStudentReply {

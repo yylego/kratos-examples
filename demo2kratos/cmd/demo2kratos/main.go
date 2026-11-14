@@ -8,6 +8,7 @@ import (
 	"github.com/go-kratos/kratos/contrib/otel/v3/tracing"
 	"github.com/go-kratos/kratos/v3"
 	"github.com/go-kratos/kratos/v3/config"
+	"github.com/go-kratos/kratos/v3/config/env"
 	"github.com/go-kratos/kratos/v3/config/file"
 	"github.com/go-kratos/kratos/v3/log"
 	"github.com/go-kratos/kratos/v3/transport/grpc"
@@ -16,8 +17,6 @@ import (
 	"github.com/yylego/kratos-examples/demo2kratos/internal/conf"
 	"github.com/yylego/must"
 	"github.com/yylego/rese"
-
-	_ "go.uber.org/automaxprocs"
 )
 
 // go build -ldflags "-X main.Version=x.y.z"
@@ -65,6 +64,7 @@ func main() {
 	c := config.New(
 		config.WithSource(
 			file.NewSource(flagconf),
+			env.NewSource("KRATOS"),
 		),
 	)
 	defer rese.F0(c.Close)

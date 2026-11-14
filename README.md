@@ -1,9 +1,13 @@
+<!-- TEMPLATE (EN) BEGIN: BADGES -->
+
 [![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/yylego/kratos-examples/release.yml?branch=main&label=BUILD)](https://github.com/yylego/kratos-examples/actions/workflows/release.yml?query=branch%3Amain)
 [![GoDoc](https://pkg.go.dev/badge/github.com/yylego/kratos-examples)](https://pkg.go.dev/github.com/yylego/kratos-examples)
 [![Coverage Status](https://img.shields.io/coveralls/github/yylego/kratos-examples/main.svg)](https://coveralls.io/github/yylego/kratos-examples?branch=main)
-[![Supported Go Versions](https://img.shields.io/badge/Go-1.25+-lightgrey.svg)](https://go.dev/)
+[![Supported Go Versions](https://img.shields.io/badge/Go-1.27%2B-lightgrey.svg)](https://go.dev/)
 [![GitHub Release](https://img.shields.io/github/release/yylego/kratos-examples.svg)](https://github.com/yylego/kratos-examples/releases)
 [![Go Report Card](https://goreportcard.com/badge/github.com/yylego/kratos-examples)](https://goreportcard.com/report/github.com/yylego/kratos-examples)
+
+<!-- TEMPLATE (EN) CLOSE: BADGES -->
 
 # kratos-examples
 
@@ -17,7 +21,7 @@ Demo projects built with the Go-Kratos framework.
 
 [中文说明](README.zh.md)
 
-<!-- TEMPLATE (EN) END: LANGUAGE NAVIGATION -->
+<!-- TEMPLATE (EN) CLOSE: LANGUAGE NAVIGATION -->
 
 ## Notes to AI Assistants
 
@@ -60,7 +64,7 @@ Both are textbook Kratos layouts: `cmd/` entry point + `internal/{biz,data,servi
 - **A source project** is the pure stump; its `changes/` always shows `✅ NO CHANGES`. It **cannot have any feature difference** — don't go hunting down "something extra" here, and don't force one in.
 - **A fork project** grows from the source, each demonstrating just one underlying feature. **That "changed thing" shows up in a fork alone**, recorded in [changes/](./changes). Read changes/ to see what it adds — and **apart from that one feature, do not rewrite the parts shared with the source.**
 
-**⛔ The single most important rule: apart from the one feature this fork demonstrates, everything else MUST be a perfect match with the source (the stump) — nothing added, nothing removed, nothing changed.** The entire value of this collection is *comparison*: the stump shows "how you write it by default", and a fork shows "the same thing improved, plus one extra capability, using some underlying feature". That gain shows up next to the stump, so the shared parts must line up down to the byte. What you must **not touch**:
+**⛔ The single most important rule: apart from the one feature this fork demonstrates, everything else MUST be a perfect match with the source (the stump) — nothing added, nothing removed, nothing changed.** The entire value of this collection is _comparison_: the stump shows "how you write it by default", and a fork shows "the same thing improved, plus one extra capability, using some underlying feature". That gain shows up next to the stump, so the shared parts must line up down to the byte. What you must **not touch**:
 
 - **Interfaces / proto**: rpc method count, message fields, error enums — a perfect match with the source
 - **biz logic**: method count, model fields, error semantics (which failure returns which error code) must match
@@ -76,7 +80,7 @@ Both are textbook Kratos layouts: `cmd/` entry point + `internal/{biz,data,servi
 
 **Two kinds of fork — each fork is one of these two:**
 
-- **Pure-equivalent**: the same logic, written more elegantly with some wrapper — logic is 100% equivalent to the source; just the *style* differs.
+- **Pure-equivalent**: the same logic, written more elegantly with some wrapper — logic is 100% equivalent to the source; just the _style_ differs.
 - **Pure-extension**: a genuine new capability added on top of the source, while the source's original base logic is **kept as-is**.
 
 **⛔ Translate the source, do not rewrite it — this matters most in "pure-equivalent" forks:** when you rewrite biz with some wrapper, treat it as a **translation** of the source — you may switch language (English identifiers → Chinese) and switch style (plain gorm → gormrepo and other ecosystem idioms), but the **logic must replicate the source 100%**: cascade delete, foreign-key / existence checks, precise error codes — each has to come through intact, **not simplified on your own initiative**. The order stands: first replicate the source's logic, then let the wrapper-based version stand next to the source, to be compared.
@@ -272,7 +276,7 @@ This project is a multi-module repo: a root module plus two sub-modules (`demo1k
 
 ### Source-project release flow (ordered, step by step)
 
-1. **Upgrade all dependencies and toolchain, but lock the language version.** Bring each dependency and tool to the latest, leaving just the `go` directive (language version) in `go.mod` untouched, and use it to pin the whole flow (e.g. `GOTOOLCHAIN=go<version-in-go.mod>`). **Why: you're upgrading the *ecosystem* (deps / tools), so the language baseline must stay put; otherwise "upgrading dependencies" quietly bumps the Go version too and turns into an uncontrolled, sweeping change.**
+1. **Upgrade all dependencies and toolchain, but lock the language version.** Bring each dependency and tool to the latest, leaving just the `go` directive (language version) in `go.mod` untouched, and use it to pin the whole flow (e.g. `GOTOOLCHAIN=go<version-in-go.mod>`). **Why: you're upgrading the _ecosystem_ (deps / tools), so the language baseline must stay put; otherwise "upgrading dependencies" quietly bumps the Go version too and turns into an uncontrolled, sweeping change.**
 2. **Regenerate intermediate artifacts.** Once the toolchain is upgraded, regenerate the generated code with the tools (`wire`; `buf generate` when proto changed), so the generated output is fresh with zero drift.
 3. **Verify end to end.** Run all unit tests + all static checks (`go build ./...`, `go vet ./...`, `gofmt -l .`); and **compile the services, start them up, and run a local API test** — just once everything passes do you enter the two release rounds below.
 4. **Round 1 — release the sub-modules.** Commit this round's source changes together with `changes/` (which now carries the diff — precisely the record of "what changed this round") **→ push** → then tag **new versions** of the two sub-modules `demo1kratos` / `demo2kratos` **→ push the tags**.
@@ -280,7 +284,7 @@ This project is a multi-module repo: a root module plus two sub-modules (`demo1k
 
 > **Each round is the full sequence "commit → push → tag → push tags": a tag must sit on a commit that has already been pushed to the remote — do not tag straight off a commit that is not yet pushed.**
 
-> **⛔ Round 2 must not touch sub-project code again — the reason:** once round 1 tags the sub-modules, that code is *frozen* — the tag (e.g. `demo1kratos@v0.0.6`) is the very baseline each fork's `changes/` diffs against. If you edit sub-project code in round 2 without cutting a new tag, the tag stops matching the code; then each fork comparing against that tag gets spurious diffs that aren't its feature at all, and its `changes/` is ruined. If a sub-project does need more changes, it has to go through round 1 again (a fresh tag) — it must not be slipped into round 2.**
+> **⛔ Round 2 must not touch sub-project code again — the reason:** once round 1 tags the sub-modules, that code is _frozen_ — the tag (e.g. `demo1kratos@v0.0.6`) is the very baseline each fork's `changes/` diffs against. If you edit sub-project code in round 2 without cutting a new tag, the tag stops matching the code; then each fork comparing against that tag gets spurious diffs that aren't its feature at all, and its `changes/` is ruined. If a sub-project does need more changes, it has to go through round 1 again (a fresh tag) — it must not be slipped into round 2.**
 
 ### Fork sync flow
 
@@ -393,10 +397,4 @@ Welcome to contribute to this project via submitting merge requests and reportin
 
 **Have Fun Coding with this package!** 🎉🎉🎉
 
-<!-- TEMPLATE (EN) END: STANDARD PROJECT FOOTER -->
-
----
-
-## GitHub Stars
-
-[![Stargazers](https://starchart.cc/yylego/kratos-examples.svg?variant=adaptive)](https://starchart.cc/yylego/kratos-examples)
+<!-- TEMPLATE (EN) CLOSE: STANDARD PROJECT FOOTER -->

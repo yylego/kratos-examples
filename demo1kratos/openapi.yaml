@@ -112,6 +112,8 @@ components:
                 student:
                     $ref: '#/components/schemas/student.StudentInfo'
         student.CreateStudentRequest:
+            required:
+                - name
             type: object
             properties:
                 name:
@@ -159,6 +161,9 @@ components:
                 student:
                     $ref: '#/components/schemas/student.StudentInfo'
         student.UpdateStudentRequest:
+            required:
+                - id
+                - name
             type: object
             properties:
                 id:

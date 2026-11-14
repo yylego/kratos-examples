@@ -46,6 +46,11 @@ orz:
 	cd demo2kratos && make all && orzkratos-srv-proto -auto
 	@echo "✅ 同步完成！请检查生成的代码并完善业务逻辑"
 
+# Regenerate the changes/ diffs of each fork; demo1kratos and demo2kratos each come with a separate make generate
+# 重新生成各 fork 的 changes/ 差异文件；demo1kratos 与 demo2kratos 各自有自己的 make generate
+generate:
+	@go generate ./...
+
 # ========================================
 # TEMPLATE BEGIN: TEST AND COVERAGE CONFIG
 # 模板开始: 测试和覆盖率配置

@@ -61,18 +61,21 @@ func TestShowDemo2ReadableChanges(t *testing.T) {
 	comparekratos.ShowReadableChanges(examples.GetDemo2BasePath(), examples.GetDemo2ForkPath())
 }
 
+//go:generate go test -run ^TestGenerateDemo1Changes$
 func TestGenerateDemo1Changes(t *testing.T) {
 	outputRoot := osmustexist.ROOT(runpath.PARENT.Join("changes"))
 	outputPath := filepath.Join(outputRoot, "demo1.md")
 	comparekratos.GenerateChangesFile(examples.GetDemo1BasePath(), examples.GetDemo1ForkPath(), outputPath)
 }
 
+//go:generate go test -run ^TestGenerateDemo2Changes$
 func TestGenerateDemo2Changes(t *testing.T) {
 	outputRoot := osmustexist.ROOT(runpath.PARENT.Join("changes"))
 	outputPath := filepath.Join(outputRoot, "demo2.md")
 	comparekratos.GenerateChangesFile(examples.GetDemo2BasePath(), examples.GetDemo2ForkPath(), outputPath)
 }
 
+//go:generate go test -run ^TestGenerateAsideChanges$
 func TestGenerateAsideChanges(t *testing.T) {
 	root := runpath.PARENT.Path()
 	excludeNames := []string{

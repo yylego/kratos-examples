@@ -8,4 +8,4 @@ server:
 data:
   database:
     driver: postgres
-    source: host=localhost port=5432 user=postgres password=123 dbname=kratos_examples_db sslmode=disable
+    source: ${DATABASE_SOURCE:host=localhost port=5432 user=postgres password=123 dbname=kratos_examples_db sslmode=disable}

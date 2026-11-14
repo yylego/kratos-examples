@@ -3,6 +3,7 @@ syntax = "proto3";
 package article;
 
 import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
 
 option go_package = "demo2kratos/api/article;article";
 
@@ -22,27 +23,19 @@ service ArticleService {
   }
 
   rpc DeleteArticle(DeleteArticleRequest) returns (DeleteArticleReply) {
-    option (google.api.http) = {
-      delete: "/articles/{id}"
-    };
+    option (google.api.http) = {delete: "/articles/{id}"};
   }
 
   rpc GetArticle(GetArticleRequest) returns (GetArticleReply) {
-    option (google.api.http) = {
-      get: "/articles/{id}"
-    };
+    option (google.api.http) = {get: "/articles/{id}"};
   }
 
   rpc ListArticles(ListArticlesRequest) returns (ListArticlesReply) {
-    option (google.api.http) = {
-      get: "/articles"
-    };
+    option (google.api.http) = {get: "/articles"};
   }
 
   rpc ListStudentArticles(ListStudentArticlesRequest) returns (ListArticlesReply) {
-    option (google.api.http) = {
-      get: "/students/{student_id}/articles"
-    };
+    option (google.api.http) = {get: "/students/{student_id}/articles"};
   }
 }
 
@@ -54,9 +47,9 @@ message ArticleInfo {
 }
 
 message CreateArticleRequest {
-  string title = 1;
+  string title = 1 [(google.api.field_behavior) = REQUIRED];
   string content = 2;
-  int64 student_id = 3;
+  int64 student_id = 3 [(google.api.field_behavior) = REQUIRED];
 }
 
 message CreateArticleReply {
@@ -64,10 +57,10 @@ message CreateArticleReply {
 }
 
 message UpdateArticleRequest {
-  int64 id = 1;
-  string title = 2;
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  string title = 2 [(google.api.field_behavior) = REQUIRED];
   string content = 3;
-  int64 student_id = 4;
+  int64 student_id = 4 [(google.api.field_behavior) = REQUIRED];
 }
 
 message UpdateArticleReply {
@@ -75,7 +68,7 @@ message UpdateArticleReply {
 }
 
 message DeleteArticleRequest {
-  int64 id = 1;
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 message DeleteArticleReply {
@@ -83,7 +76,7 @@ message DeleteArticleReply {
 }
 
 message GetArticleRequest {
-  int64 id = 1;
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 message GetArticleReply {
@@ -96,7 +89,7 @@ message ListArticlesRequest {
 }
 
 message ListStudentArticlesRequest {
-  int64 student_id = 1;
+  int64 student_id = 1 [(google.api.field_behavior) = REQUIRED];
   int32 page = 2;
   int32 page_size = 3;
 }

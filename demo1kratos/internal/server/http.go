@@ -4,6 +4,7 @@ import (
 	"log/slog"
 
 	"github.com/go-kratos/kratos/v3/middleware/recovery"
+	"github.com/go-kratos/kratos/v3/middleware/validate"
 	"github.com/go-kratos/kratos/v3/transport/http"
 	pb "github.com/yylego/kratos-examples/demo1kratos/api/student"
 	"github.com/yylego/kratos-examples/demo1kratos/internal/conf"
@@ -14,6 +15,7 @@ func NewHTTPServer(c *conf.Server, student *service.StudentService, logger *slog
 	var opts = []http.ServerOption{
 		http.Middleware(
 			recovery.Recovery(),
+			validate.Validator(validateRequiredFields),
 		),
 	}
 	if c.Http.Network != "" {

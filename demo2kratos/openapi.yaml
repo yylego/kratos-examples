@@ -151,6 +151,9 @@ components:
                 article:
                     $ref: '#/components/schemas/article.ArticleInfo'
         article.CreateArticleRequest:
+            required:
+                - title
+                - studentId
             type: object
             properties:
                 title:
@@ -185,6 +188,10 @@ components:
                 article:
                     $ref: '#/components/schemas/article.ArticleInfo'
         article.UpdateArticleRequest:
+            required:
+                - id
+                - title
+                - studentId
             type: object
             properties:
                 id:

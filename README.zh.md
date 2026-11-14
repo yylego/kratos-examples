@@ -1,9 +1,13 @@
+<!-- TEMPLATE (ZH) BEGIN: BADGES -->
+
 [![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/yylego/kratos-examples/release.yml?branch=main&label=BUILD)](https://github.com/yylego/kratos-examples/actions/workflows/release.yml?query=branch%3Amain)
 [![GoDoc](https://pkg.go.dev/badge/github.com/yylego/kratos-examples)](https://pkg.go.dev/github.com/yylego/kratos-examples)
 [![Coverage Status](https://img.shields.io/coveralls/github/yylego/kratos-examples/main.svg)](https://coveralls.io/github/yylego/kratos-examples?branch=main)
-[![Supported Go Versions](https://img.shields.io/badge/Go-1.25+-lightgrey.svg)](https://go.dev/)
+[![Supported Go Versions](https://img.shields.io/badge/Go-1.27%2B-lightgrey.svg)](https://go.dev/)
 [![GitHub Release](https://img.shields.io/github/release/yylego/kratos-examples.svg)](https://github.com/yylego/kratos-examples/releases)
 [![Go Report Card](https://goreportcard.com/badge/github.com/yylego/kratos-examples)](https://goreportcard.com/report/github.com/yylego/kratos-examples)
+
+<!-- TEMPLATE (ZH) CLOSE: BADGES -->
 
 # kratos-examples
 
@@ -17,13 +21,13 @@
 
 [ENGLISH README](README.md)
 
-<!-- TEMPLATE (ZH) END: LANGUAGE NAVIGATION -->
+<!-- TEMPLATE (ZH) CLOSE: LANGUAGE NAVIGATION -->
 
 ## 给 AI 助手的说明
 
 > 如果你是 AI 编程助手，动手前先把这一段读完、读懂。
 >
-> **⭐ 最关键的一句：下面所有的规矩和流程，都不是我们硬性强加给你的死规定——它们全都是你一旦真正理解了这个项目的定位、以及各个部分的含义之后，自然而然、顺理成章推出来的结果。所以别去死记条目，要去理解原理；原理一通，这些流程你自己都能推导出来，也就不会跑偏瞎搞了。**
+> **⭐ 最关键的一句：下面所有的规矩和流程，都不是我们硬性强加给你的教条——它们全都是你一旦真正理解了这个项目的定位、以及各个部分的含义之后，自然而然、顺理成章推出来的结果。所以别去硬背条目，要去理解原理；原理一通，这些流程你自己都能推导出来，也就不会跑偏瞎搞了。**
 
 **项目定位：** `kratos-examples` 是一个基于 [Go-Kratos](https://go-kratos.dev) 的**标准演示树桩**——一个规范、地道的 Kratos 工程，也是下游 20+ 个专用演示 fork 的共同基础模板。它**不是**自定义框架，就是经典 Kratos 的标准布局，你早就认识它，别当成陌生项目从头猜。
 
@@ -291,7 +295,7 @@ make orz
 - **上游树桩变了，fork 的定制要跟着适配。** 合并后对照看树桩改了什么（如框架大版本升级、API 变更），把本 fork 那一小撮定制**逐行复刻到新版代码上、适配新 API**；蓝图就在 `changes/` 里。
 - Fork **永不合并回上游**——每个都作为独立示例长期存在。
 
-上面的工具正好对应各个环节：`depbump` 管依赖、`tago` 管标签、`go-lint` 管格式化与检查。具体顺序最好一步一步来、不写死成脚本，这样流程能随具体情况灵活调整。
+上面的工具正好对应各个环节：`depbump` 管依赖、`tago` 管标签、`go-lint` 管格式化与检查。具体顺序最好一步一步来、不固化成脚本，这样流程能随具体情况灵活调整。
 
 ### 代码变更
 
@@ -393,10 +397,4 @@ MIT 许可证 - 详见 [LICENSE](LICENSE)。
 
 **祝你用这个包编程愉快！** 🎉🎉🎉
 
-<!-- TEMPLATE (ZH) END: STANDARD PROJECT FOOTER -->
-
----
-
-## GitHub 标星点赞
-
-[![Stargazers](https://starchart.cc/yylego/kratos-examples.svg?variant=adaptive)](https://starchart.cc/yylego/kratos-examples)
+<!-- TEMPLATE (ZH) CLOSE: STANDARD PROJECT FOOTER -->
